@@ -1,6 +1,6 @@
 var pay_level
 var reference_year
-var yearly_inflation = {2017: 100, 2018: 101.93, 2019: 103.56, 2020: 104.46, 2021: 107.44, 2022: 114.5, 2023: 121.09, 2024: 125.2, 2025: 128.96, 2026: 132.7}
+
 var real_wages
 var nominal_wages
 
@@ -94,9 +94,14 @@ $("#pay_level").text(level);
 
 $("#selected_year").text(ref_year);
 
-localeNum = Math.round(pay_diff).toLocaleString()
+localeNum = Math.round(pay_diff*-1).toLocaleString()
 $("#pay_diff").text(localeNum);
-$("#perc_diff").text((Math.round(perc_diff*100))/100);
+$("#perc_diff").text((Math.round(perc_diff*100))/100*-1);
+if (pay_diff > 0){
+    $(".results").css("color", "red");
+} else {
+    $(".results").css("color", "green");
+}
 }
 function draw_table(){
     var table = '<table id="wages_table">'
@@ -154,6 +159,20 @@ $(`#${l}`).text(l+2016)
     $("#11").text("Increase")
     $("#22").text("Nominal Wages")
     $("#33").text("Real Wages")
+}
+function load_presets(){
+    var constr_option
+    wage_presets.forEach(function(value, index, array){
+        constr_option = ""
+        if (index == 0){
+            constr_option = '<option selected value="' + index + '">' + wage_presets[index]["prop"] + '</option>'
+        } else {
+            constr_option = '<option value="' + index + '">' + wage_presets[index]["prop"] + '</option>'
+        }
+        $("#select_preset").append(constr_option)
+    });
+
+
 }
 function write_table() {
     //write nominal wages

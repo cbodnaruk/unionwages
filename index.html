@@ -2,12 +2,13 @@
 <html>
     <head>
         <title>Wage Calculator - RAFA USyd</title>
-        <script type="text/javascript" src="nominal_wages_data.js"></script>
+        <script type="text/javascript" src="data.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
         <script type="text/javascript" src="calculator.js"></script>
 
         <script>
              $(document).ready(function(){
+                load_presets()
                 draw_table()
                 $("#refresh_button").click(trigger_update($("#year_select").val(),$("#level_select").val()))
                 
@@ -101,11 +102,11 @@
         </select></div>
 <br>
 <div >Select a preset: <select name="preset_select" id="select_preset" onchange="trigger_preset()">
-<option selected value="0">Management's Proposal</option>
-<option value="1">The NTEU's Demand</option>
+<!-- <option selected value="0">Management's Proposal</option>
+<option value="1">The NTEU's Demand</option> -->
 </select></div>
 <div id="wages_table_container"></div>
-<div class="results">Average real pay cut for level <span id="pay_level">A1</span> from old agreement to new agreement:
+<div class="results">Average real pay difference for level <span id="pay_level">A1</span> from old agreement to new agreement:
 <p class="subresults"><span id="selected_year"></span> dollars: $<span class="numresults" id="pay_diff"></span>
 <br>
 Per cent: <span class="numresults" id="perc_diff"></span><i>%</i>
