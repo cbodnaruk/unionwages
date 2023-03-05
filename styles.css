@@ -67,3 +67,9 @@ td, th { padding: 3px 10px; width: 10%;}
 #wages_table table tbody td { color: #00496B; border-left: 1px solid #E1EEF4;font-size: 12px;font-weight: normal; }
 #wages_table table tbody td:first-child { border-left: none; }
 #wages_table table tbody tr:last-child td { border-bottom: none; }
+
+#safari_error {
+    font-size: 70%;
+    font-style: italic;
+
+}

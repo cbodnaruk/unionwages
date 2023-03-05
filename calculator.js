@@ -188,3 +188,9 @@ function write_table() {
 function isNumeric(n) {
     return !isNaN(parseFloat(n)) && isFinite(n);
   }
+  function safari_error_check() {
+    //Check if browser is Safari or not
+
+        $("#safari_error").text("There is a known error in some versions of the Safari browser where the data doesn't load properly. Please switch to another browser while I work to fix this issue.")
+    
+  }
