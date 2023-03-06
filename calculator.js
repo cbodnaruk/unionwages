@@ -3,7 +3,7 @@ var reference_year
 
 var real_wages
 var nominal_wages
-
+var one_time_payment
 function trigger_update(){
 var ref_year = $("#year_select").val()
 var level = $("#level_select").val()
@@ -20,6 +20,7 @@ verify_input = false
 if (verify_input == true){
     recalculate_nominal_wages(level)
     calculate_real_wages(ref_year,level)
+one_time_payment_calc(ref_year)
     var pay_diff = calculate_pay_diff()
     var perc_diff = calculate_perc_diff(pay_diff)
     write_update(ref_year,level,pay_diff,perc_diff)
@@ -58,7 +59,13 @@ function calculate_real_wages(ref_year,level) {
 real_wages[i] = nominal_wages[i] * multiplier[i-17]
     }
     console.log(real_wages)
-    
+    one_time_payment = 2000*multiplier[ref_year-2017]
+    console.log(one_time_payment)
+}
+function one_time_payment_calc(ref_year){
+    var multiplier
+        multiplier = yearly_inflation[ref_year]/yearly_inflation[2023]
+        one_time_payment = 2000*multiplier
 }
 function calculate_pay_diff(){
     var sum_prev_real_wages = 0
@@ -89,6 +96,8 @@ function calculate_perc_diff(paydiff){
 }
 function write_update(ref_year,level,pay_diff,perc_diff){
 var localeNum
+var constr_otp
+var constr_otp_weekly
     console.log(pay_diff)
 $("#pay_level").text(level);
 
@@ -102,6 +111,11 @@ if (pay_diff > 0){
 } else {
     $(".results").css("color", "green");
 }
+// note on $2000 lump sum
+constr_otp = "$" + Math.round(one_time_payment).toLocaleString() + " in " + ref_year
+constr_otp_weekly = Math.round((one_time_payment/208)*100)/100
+$("#one_time_adj").text(constr_otp)
+$("#one_time_weekly").text(constr_otp_weekly)
 }
 function draw_table(){
     var table = '<table id="wages_table">'
