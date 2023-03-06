@@ -65,7 +65,7 @@ real_wages[i] = nominal_wages[i] * multiplier[i-17]
 function one_time_payment_calc(ref_year){
     var multiplier
         multiplier = yearly_inflation[ref_year]/yearly_inflation[2023]
-        one_time_payment = 2000*multiplier
+        one_time_payment = 500*multiplier
 }
 function calculate_pay_diff(){
     var sum_prev_real_wages = 0
