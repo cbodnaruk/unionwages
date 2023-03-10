@@ -74,6 +74,9 @@ input{
 input#fte_select{
     width:10%;
 }
+input#casual_select{
+    width:2%;
+}
 #wages_table table { border-collapse: collapse; text-align: left; width: 50%;} 
 #wages_table {font: normal 12px/150% Arial, Helvetica, sans-serif; background: #fff; overflow: hidden; border: 1px solid #006699; -webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px; }
 td, th { padding: 3px 10px; width: 10%;}

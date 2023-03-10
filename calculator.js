@@ -4,6 +4,7 @@ var reference_year
 var real_wages
 var nominal_wages
 var one_time_payment
+var casual_mult
 function trigger_update(){
 var ref_year = $("#year_select").val()
 var level = $("#level_select").val()
@@ -11,6 +12,8 @@ var fte = $("#fte_select").val()
 var verify_input = true
 var incr_val
 var constr_selector
+
+
 for (let i = 0; i<4; i++){
     constr_selector = `#inf_input_${i}`
     incr_val = $(constr_selector).val()
@@ -19,6 +22,9 @@ verify_input = false
     }
 }
 if (verify_input == true){
+    if ($("#casual_select").is(":checked") == true){
+        casual_mult = 1.25
+    } else {casual_mult = 1}
     recalculate_nominal_wages(level)
     calculate_real_wages(ref_year,level)
 one_time_payment_calc(ref_year)
@@ -104,7 +110,7 @@ $("#pay_level").text(level);
 
 $("#selected_year").text(ref_year);
 
-localeNum = Math.round(pay_diff*-1*fte).toLocaleString()
+localeNum = Math.round(pay_diff*-1*fte*casual_mult).toLocaleString()
 $("#pay_diff").text(localeNum);
 $("#perc_diff").text((Math.round(perc_diff*100))/100*-1);
 if (pay_diff > 0){
@@ -167,7 +173,7 @@ $(`#${l}`).text(l+2016)
     var constr_input
     for (let k = 18; k < 22; k ++){
         constr_selector = `#${k}`
-        constr_input = '<input class="inf_input" id="inf_input_'+(k-18)+'"  pattern="^\d*(\.\d{0,2})?$" maxlength="5" onchange="trigger_update()" value="'+wage_presets[0][k+5]+'"></input>'
+        constr_input = '<input type="text" class="inf_input" id="inf_input_'+(k-18)+'"  pattern="^\d*(\.\d{0,2})?$" maxlength="5" onchange="trigger_update()" value="'+wage_presets[0][k+5]+'"></input>'
         $(constr_selector).html(constr_input)
     }
     $("#0").text("Year")
@@ -192,11 +198,11 @@ function load_presets(){
 function write_table(fte) {
     //write nominal wages
     for (let i = 23; i<33; i++) {
-        $("#"+i).text("$"+(Math.round(nominal_wages[i-6]*fte).toLocaleString()))
+        $("#"+i).text("$"+(Math.round(nominal_wages[i-6]*fte*casual_mult).toLocaleString()))
     }
     //write real wages
     for (let j = 34; j<44; j++) {
-        $(`#${j}`).text("$"+(Math.round(real_wages[j-17]*fte).toLocaleString()))
+        $(`#${j}`).text("$"+(Math.round(real_wages[j-17]*fte*casual_mult).toLocaleString()))
     }
     // write previous inflation
 }
