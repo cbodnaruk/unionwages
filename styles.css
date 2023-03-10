@@ -10,6 +10,18 @@ font-size: 1em;
 select:focus:hover {
     background-color: lightgray;
 }
+input{
+    background-color: white;
+    border-color: lightblue;
+    border-style: solid;
+border-radius: 10%;
+padding: 0.7% 1%;
+font-family: Arial, Helvetica, sans-serif;
+font-size: 1em;
+}
+input:focus {
+    background-color: lightgray;
+}
 button{
     background-color: white;
     border-color: lightblue;
@@ -58,6 +70,9 @@ text-align: center;
 }
 input{
     width:75%;
+}
+input#fte_select{
+    width:10%;
 }
 #wages_table table { border-collapse: collapse; text-align: left; width: 50%;} 
 #wages_table {font: normal 12px/150% Arial, Helvetica, sans-serif; background: #fff; overflow: hidden; border: 1px solid #006699; -webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px; }

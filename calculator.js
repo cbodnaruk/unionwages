@@ -7,13 +7,14 @@ var one_time_payment
 function trigger_update(){
 var ref_year = $("#year_select").val()
 var level = $("#level_select").val()
+var fte = $("#fte_select").val()
 var verify_input = true
 var incr_val
 var constr_selector
 for (let i = 0; i<4; i++){
     constr_selector = `#inf_input_${i}`
     incr_val = $(constr_selector).val()
-    if (isNumeric(incr_val) == false){
+    if (isNumeric(incr_val) == false || isNumeric(fte) == false){
 verify_input = false
     }
 }
@@ -23,8 +24,8 @@ if (verify_input == true){
 one_time_payment_calc(ref_year)
     var pay_diff = calculate_pay_diff()
     var perc_diff = calculate_perc_diff(pay_diff)
-    write_update(ref_year,level,pay_diff,perc_diff)
-    write_table()
+    write_update(ref_year,level,pay_diff,perc_diff,fte)
+    write_table(fte)
 }
 }
 
@@ -94,7 +95,7 @@ function calculate_perc_diff(paydiff){
 
     return (paydiff/avg_prev_real_wages)*100
 }
-function write_update(ref_year,level,pay_diff,perc_diff){
+function write_update(ref_year,level,pay_diff,perc_diff,fte){
 var localeNum
 var constr_otp
 var constr_otp_weekly
@@ -103,7 +104,7 @@ $("#pay_level").text(level);
 
 $("#selected_year").text(ref_year);
 
-localeNum = Math.round(pay_diff*-1).toLocaleString()
+localeNum = Math.round(pay_diff*-1*fte).toLocaleString()
 $("#pay_diff").text(localeNum);
 $("#perc_diff").text((Math.round(perc_diff*100))/100*-1);
 if (pay_diff > 0){
@@ -188,23 +189,23 @@ function load_presets(){
 
 
 }
-function write_table() {
+function write_table(fte) {
     //write nominal wages
     for (let i = 23; i<33; i++) {
-        $("#"+i).text("$"+(Math.round(nominal_wages[i-6]).toLocaleString()))
+        $("#"+i).text("$"+(Math.round(nominal_wages[i-6]*fte).toLocaleString()))
     }
     //write real wages
     for (let j = 34; j<44; j++) {
-        $(`#${j}`).text("$"+(Math.round(real_wages[j-17]).toLocaleString()))
+        $(`#${j}`).text("$"+(Math.round(real_wages[j-17]*fte).toLocaleString()))
     }
     // write previous inflation
 }
 function isNumeric(n) {
     return !isNaN(parseFloat(n)) && isFinite(n);
   }
-  function safari_error_check() {
+function safari_error_check() {
     //Check if browser is Safari or not
 
-        $("#safari_error").text("There is a known error in some versions of the Safari browser where the data doesn't load properly. Please switch to another browser while I work to fix this issue.")
+    $("#safari_error").text("There is a known error in some versions of the Safari browser where the data doesn't load properly. Please switch to another browser while I work to fix this issue.")
     
   }
