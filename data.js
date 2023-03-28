@@ -1549,7 +1549,14 @@ var level_list = ["A1","A2","A3","A4","A5","A6","A7","A8","B1","B2","B3","B4","B
 
 var wage_presets = [
   {
-    "prop": "Management's Proposal",
+    "prop": "Management's NEW Proposal",
+    "23": 4.6,
+    "24": 3.75,
+    "25": 3.75,
+    "26": 4
+  },
+  {
+    "prop": "Management's OLD Proposal",
     "23": 4.6,
     "24": 3.25,
     "25": 3.25,
