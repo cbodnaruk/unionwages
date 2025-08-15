@@ -22,9 +22,9 @@
         <link rel="stylesheet" href="styles.css">
         </head> 
 <body>
-    <div class="outer_box">
-        <div class="inner_box">
-<div class="instruction">1. Select Pay Level (Prof staff rates are calculated at 35hrs/week):
+
+        <main>
+<div class="instruction"><label for="level_select">1. Select Pay Level (Prof staff rates are calculated at 35hrs/week): </label>
     <select name="level_select" id="level_select" onchange="trigger_update()">
         <option value="A1">A1</option>
         <option value="A2">A2</option>
@@ -89,7 +89,7 @@
         </select>
     </div>
         <br>
-<div class="instruction">2. Select reference year (2021 was the end of the last agreement):
+<div class="instruction"><label for="year_select">2. Select reference year (2021 was the end of the last agreement):</label>
         <select name="year_select" id="year_select" onchange="trigger_update()">
         <option value="2017">2017</option>
         <option value="2018">2018</option>
@@ -102,12 +102,12 @@
         <option value="2025">2025</option>
         <option value="2026">2026</option>
         </select></div>
-<div class="instruction">3. Input workload (in terms of FTE): 
+<div class="instruction"><label for="fte_select">3. Input workload (in terms of FTE): </label>
         <input type="number" step="0.01" max="1" value="1" name="fte_select" id="fte_select" onchange="trigger_update()">
-        <span>Casual?: <input type="checkbox" id="casual_select" onchange="trigger_update()"></span>
+        <span><label for="casual_select">Casual?: </label><input type="checkbox" id="casual_select" onchange="trigger_update()"></span>
 </div>
 <br>
-<div >Select a preset: <select name="preset_select" id="select_preset" onchange="trigger_preset()">
+<div > <label for="preset_select">Select a preset: </label><select name="preset_select" id="select_preset" onchange="trigger_preset()">
 <!-- <option selected value="0">Management's Proposal</option>
 <option value="1">The NTEU's Demand</option> -->
 </select></div>
@@ -129,7 +129,7 @@ Per cent: <span class="numresults" id="perc_diff"></span><i>%</i>
 <div id="safari_error"></div>
 <br>
 <br>
-<div id="calc_info">
+<aside>
     <p>* Real wages are wages adjusted for inflation.</p>
     <p>Also included in management's pay offer is a one-time bonus of $2,000, or $500p/a (that's <span id="one_time_adj"></span> dollars, or $<span  id="one_time_weekly"></span>/week for the life of the agreement). For the sake of comparison it isn't included above, but it can be subtracted from the total pay cut shown above.</p>
     <p>Inflation is calculated with year-to-year quarterly inflation, averaged over the financial year (as USYD pay rises take effect in July).</p>
@@ -138,7 +138,7 @@ Per cent: <span class="numresults" id="perc_diff"></span><i>%</i>
     <p>The NTEU claim is coded as CPI+1.5% where CPI is the average year-to-year quarterly inflation of the previous financial year.</p>
 </div>
 </div>
-</div>
+
 </body>
 
 </html>
